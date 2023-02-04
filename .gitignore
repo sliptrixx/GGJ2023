@@ -70,3 +70,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Coherence Baked content
+/[Aa]ssets/coherence/Footprint.cs*
+/[Aa]ssets/coherence/baked*

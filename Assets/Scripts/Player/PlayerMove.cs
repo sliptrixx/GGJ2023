@@ -8,16 +8,18 @@ public class PlayerMove : MonoBehaviour
 	[SerializeField] InputActionReference MoveAction;
 	[SerializeField] float Speed = 1.0f;
 
-	// reference to the camera
 	Transform cam;
 	Rigidbody rb;
 
 	Vector3 move_input;
 
+	Animator animator;
+
 	void Start()
 	{
 		cam = Camera.main.transform;
 		rb = GetComponent<Rigidbody>();
+		animator = GetComponentInChildren<Animator>();
 	}
 
 	void OnEnable()
@@ -38,5 +40,9 @@ public class PlayerMove : MonoBehaviour
 	{
 		var gravity = (move_input == Vector3.zero) ? Physics.gravity : Vector3.zero;
 		rb.velocity = move_input * Speed + gravity;
+
+		// set the speed in the animator
+		var velocity = new Vector2(rb.velocity.x, rb.velocity.z);
+		animator.SetFloat("MoveSpeed", velocity.magnitude);
 	}
 }

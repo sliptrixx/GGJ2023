@@ -316,7 +316,13 @@ MonoBehaviour:
   selectedSynchronizedPrefabOption: 2
   usingReflection: 0
   coherenceTag: 
-  componentActions: []
+  componentActions:
+  - rid: 3973877046929784832
+  - rid: 3973877046929784833
+  - rid: 3973877046929784834
+  - rid: 3973877046929784835
+  - rid: 3973877046929784836
+  - rid: 3973877046929784837
   references:
     version: 2
     RefIds:
@@ -686,6 +692,30 @@ MonoBehaviour:
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
+    - rid: 3973877046929784832
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 8078975776937208631}
+    - rid: 3973877046929784833
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 7438718047520773274}
+    - rid: 3973877046929784834
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 7707667903956413878}
+    - rid: 3973877046929784835
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 2878875705134780626}
+    - rid: 3973877046929784836
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 4997767447672864400}
+    - rid: 3973877046929784837
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 2758022265868041115}
 --- !u!114 &7438718047520773274
 MonoBehaviour:
   m_ObjectHideFlags: 0

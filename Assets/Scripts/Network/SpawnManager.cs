@@ -1,7 +1,6 @@
 using Coherence.Runtime;
 using Coherence.Toolkit;
 using Hibzz.Singletons;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,15 +28,23 @@ public class SpawnManager : Singleton<SpawnManager>
 		var playerName = CurrentPlayer.GetComponent<PlayerName>();
 		playerName.SetName(ConnectionManager.Instance.PlayerName);
 
-		// Pick a random color
-		var colorModifier = CurrentPlayer.GetComponentInChildren<ColorModifier>();
-		colorModifier.SetColor(PickNextColor());
+		// hook up with the monobridge so that the next available color can be picked by the system
+		// all connection details are not available at this point
+		var mono = ConnectionManager.Instance.MonoBridge;
+		mono.ClientConnections.OnSynced += UpdatePlayerColor;
 	}
 
-	Color PickNextColor()
+	void UpdatePlayerColor(CoherenceClientConnectionManager connectionManager)
 	{
-		//var mono = ConnectionManager.Instance.MonoBridge;
-		//var connections = mono.ClientConnections;
-		return playerColors[Random.Range(0, playerColors.Count)];
+		// get the number of clients and based on that assign the color
+		var index = connectionManager.ClientConnectionCount - 1;
+
+		// color modifier component is used to change the color of a material (as defined by the material
+		// id in the inspector)
+		var colorModifier = CurrentPlayer.GetComponentInChildren<ColorModifier>();
+		colorModifier.SetColor(playerColors[index]);
+
+		// it's a one and done function, so let's unhook it
+		connectionManager.OnSynced -= UpdatePlayerColor;
 	}
 }

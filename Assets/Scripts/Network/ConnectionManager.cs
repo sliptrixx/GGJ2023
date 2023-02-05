@@ -11,6 +11,8 @@ using System.Collections.Generic;
 
 public class ConnectionManager : Singleton<ConnectionManager>
 {
+	[SerializeField] bool EditorAutoConnect = false;
+
 	const int k_MAX_PLAYERS = 4;
 
 	public string PlayerName { get; protected set; } = "";
@@ -20,12 +22,18 @@ public class ConnectionManager : Singleton<ConnectionManager>
 
 	CoherenceMonoBridge MonoBridge = null; // A reference to the monobridge
 
-	void Start()
+	async void Start()
 	{
-		RefreshRegions();
+		await RefreshRegions();
+
+		#if UNITY_EDITOR
+		if(EditorAutoConnect) { CreateConnection(); }
+		#else
+		EditorAutoConnect = false;
+		#endif
 	}
 
-	public async void RefreshRegions()
+	public async Task RefreshRegions()
 	{
 		// When in local development mode, check if the local server is up and update the region
 		if(RuntimeSettings.instance.LocalDevelopmentMode)
@@ -82,13 +90,11 @@ public class ConnectionManager : Singleton<ConnectionManager>
 
 		// the player for sure will join a room at this point, so...now would be a good
 		// time to finalize the player name for this player
-		PlayerName = UIManager.Instance.GetPlayerName();
+		PlayerName = EditorAutoConnect ? "Editor_Client" : UIManager.Instance.GetPlayerName();
 
 		// look for any valid room to join
 		foreach (var room in rooms)
 		{
-			Debug.Log($"Room IP: {room.Host.Ip}");
-
 			if (room.ConnectedPlayers < k_MAX_PLAYERS)
 			{
 				MonoBridge.JoinRoom(room);

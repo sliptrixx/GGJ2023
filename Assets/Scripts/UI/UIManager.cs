@@ -16,6 +16,12 @@ public class UIManager : Singleton<UIManager>
 	[Tooltip("A reference to the text that displays the current server text")]
 	[SerializeField] TMP_Text CurrentServerText;
 
+	void Start()
+	{
+		ConnectUI.SetActive(true);
+	}
+
+
 	/// <summary>
 	/// Show/Hide the connect UI
 	/// </summary>

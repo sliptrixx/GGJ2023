@@ -274,6 +274,8 @@ MonoBehaviour:
       lodStepsActive: 1
     - component: {fileID: 4852935339479056761}
       lodStepsActive: 1
+    - component: {fileID: 2758022265868041115}
+      lodStepsActive: 1
     lodLevels:
     - distance: 0
     archetypeName: Player_298abb886bf954e4f9e39fc8275d1bd1
@@ -299,6 +301,7 @@ MonoBehaviour:
   - rid: 3973877032564293634
   - rid: 3973877032564293636
   - rid: 3973877032564293650
+  - rid: 3973877032564293660
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -637,6 +640,52 @@ MonoBehaviour:
         oldName: 
         oldParameterAssemblyTypes: []
         parameterHash: 526065662
+    - rid: 3973877032564293660
+      type: {class: DeepRotationBinding, ns: Coherence.Toolkit.Bindings.TransformBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3973877032564293661
+        routing: 0
+        isPredicted: 0
+        defaultInterpolationPath: 
+        guid: 6368a4b4-07c8-42dd-8eae-f18b8b82f507
+        archetypeData:
+          type: 8
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 8
+            bits: 32
+            minRange: 0
+            maxRange: 0
+            precision: 0.00000008381903171539307
+            floatCompression: 0
+          sharedBinding: {fileID: 0}
+        unityComponent: {fileID: 8247305452010246827}
+        coherenceSync: {fileID: 0}
+        interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
+    - rid: 3973877032564293661
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: rotation
+        monoAssemblyType: UnityEngine.Quaternion, UnityEngine
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 64
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.TransformBindings.DeepRotationBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
 --- !u!114 &7438718047520773274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,6 +713,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveAction: {fileID: -6246003900204893148, guid: 8cd625ea4ef79c54d905902abe52dc26, type: 3}
   Speed: 3.5
+  Tilt: {fileID: 2758022265868041115}
+  animator: {fileID: 4852935339479056761}
 --- !u!114 &7707667903956413878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1029,6 +1080,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &2758022265868041115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8736842747237287953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508ca56eac61ce44fb1a3c939c2eec9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxTilt: 10
+  parent: {fileID: 3916744387851235550}
 --- !u!4 &8972408841220721590 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 683016262716161782, guid: fad009b6dd5696d46aaec835338ae821, type: 3}

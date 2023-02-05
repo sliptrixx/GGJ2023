@@ -8,18 +8,20 @@ public class PlayerMove : MonoBehaviour
 	[SerializeField] InputActionReference MoveAction;
 	[SerializeField] float Speed = 1.0f;
 
+	[Space]
+	[SerializeField] ProceduralTilt Tilt;
+
 	Transform cam;
 	Rigidbody rb;
 
 	Vector3 move_input;
 
-	Animator animator;
+	[SerializeField] Animator animator;
 
 	void Start()
 	{
 		cam = Camera.main.transform;
 		rb = GetComponent<Rigidbody>();
-		animator = GetComponentInChildren<Animator>();
 	}
 
 	void OnEnable()
@@ -41,8 +43,14 @@ public class PlayerMove : MonoBehaviour
 		var gravity = (move_input == Vector3.zero) ? Physics.gravity : Vector3.zero;
 		rb.velocity = move_input * Speed + gravity;
 
+		// It's 1:13 am, and I'm pretty sure that the logic of this thing is convoluted but my brain
+		// is too fried to comprehend how to simplify it
+		
 		// set the speed in the animator
-		var velocity = new Vector2(rb.velocity.x, rb.velocity.z);
-		animator.SetFloat("MoveSpeed", velocity.magnitude);
+		var velocity = move_input * Speed;
+		animator.SetFloat("MoveSpeed", CustomMath.Remap(0, Speed, 0, 1, velocity.magnitude));
+
+		// also apply proceedural tilting based on movement direction
+		Tilt.Apply(move_input);
 	}
 }

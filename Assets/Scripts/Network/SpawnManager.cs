@@ -1,3 +1,5 @@
+using Coherence.Runtime;
+using Coherence.Toolkit;
 using Hibzz.Singletons;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +9,9 @@ public class SpawnManager : Singleton<SpawnManager>
 {
 	[SerializeField] GameObject PlayerPrefab;
 	[SerializeField] float SpawnRadius;
+
+	[Space]
+	[SerializeField] List<Color> playerColors;
 
 	public GameObject CurrentPlayer { get; protected set; }
 
@@ -23,5 +28,16 @@ public class SpawnManager : Singleton<SpawnManager>
 		// additionally set the name on the player's nameplate
 		var playerName = CurrentPlayer.GetComponent<PlayerName>();
 		playerName.SetName(ConnectionManager.Instance.PlayerName);
+
+		// Pick a random color
+		var colorModifier = CurrentPlayer.GetComponentInChildren<ColorModifier>();
+		colorModifier.SetColor(PickNextColor());
+	}
+
+	Color PickNextColor()
+	{
+		//var mono = ConnectionManager.Instance.MonoBridge;
+		//var connections = mono.ClientConnections;
+		return playerColors[Random.Range(0, playerColors.Count)];
 	}
 }

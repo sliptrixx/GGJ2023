@@ -13,14 +13,14 @@ public class ConnectionManager : Singleton<ConnectionManager>
 {
 	[SerializeField] bool EditorAutoConnect = false;
 
-	const int k_MAX_PLAYERS = 4;
+	const int k_MAX_PLAYERS = 6;
 
 	public string PlayerName { get; protected set; } = "";
 	public string CurrentRegion { get; protected set; }
 
 	public List<string> Regions { get; protected set; }
 
-	CoherenceMonoBridge MonoBridge = null; // A reference to the monobridge
+	public CoherenceMonoBridge MonoBridge { get; protected set; } = null; // A reference to the monobridge
 
 	async void Start()
 	{
@@ -74,10 +74,13 @@ public class ConnectionManager : Singleton<ConnectionManager>
 		// if the monobridge is null, then look for it
 		if(MonoBridge is null)
 		{
-			if(!MonoBridgeStore.TryGetBridge(gameObject.scene, out MonoBridge))
+			CoherenceMonoBridge monobridge;
+			if(!MonoBridgeStore.TryGetBridge(gameObject.scene, out monobridge))
 			{
 				Debug.LogWarning("No monobridge available");
 			}
+
+			MonoBridge = monobridge;
 		}
 
 		// continue by getting all room info
@@ -131,7 +134,7 @@ public class ConnectionManager : Singleton<ConnectionManager>
 	{
 		// create the room
 		RoomCreationOptions options = new RoomCreationOptions();
-		options.MaxClients = 4;
+		options.MaxClients = k_MAX_PLAYERS;
 		var room = await PlayResolver.CreateRoom(region, options);
 
 		// join the room

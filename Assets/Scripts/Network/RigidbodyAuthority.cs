@@ -27,7 +27,7 @@ public class RigidbodyAuthority : MonoBehaviour
 
 	void OnDestroy()
 	{
-		sync.OnStateAuthority.RemoveListener(UpdateKinematicStatus);
+		if(sync) { sync.OnStateAuthority.RemoveListener(UpdateKinematicStatus); }
 	}
 
 	void UpdateKinematicStatus()

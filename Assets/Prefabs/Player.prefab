@@ -298,10 +298,9 @@ MonoBehaviour:
   - rid: 3973876991384092674
   - rid: 3973877027931947012
   - rid: 3973877027931947014
-  - rid: 3973877032564293634
-  - rid: 3973877032564293636
   - rid: 3973877032564293650
   - rid: 3973877032564293660
+  - rid: 3973877079595024405
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -512,93 +511,6 @@ MonoBehaviour:
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
-    - rid: 3973877032564293634
-      type: {class: ColorBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 3973877032564293635
-        routing: 0
-        isPredicted: 0
-        defaultInterpolationPath: 
-        guid: 6de60690-9621-451c-a219-e2a599610d11
-        archetypeData:
-          type: 11
-          minRange: 0
-          maxRange: 0
-          sampleRate: 20
-          floatCompression: 0
-          fields:
-          - type: 11
-            bits: 32
-            minRange: 0
-            maxRange: 0
-            precision: 0.00000000023283064370807974
-            floatCompression: 0
-          sharedBinding: {fileID: 0}
-        unityComponent: {fileID: 8113085132751236480}
-        coherenceSync: {fileID: 0}
-        interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
-    - rid: 3973877032564293635
-      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        name: color
-        monoAssemblyType: UnityEngine.Color, UnityEngine
-        required: 0
-        enforcesLODingWhenFieldsOverriden: 1
-        valueSyncCallbackName: 
-        memberType: 4
-        parameterAssemblyTypes: []
-        ownerType:
-          assemblyQualifiedName: ColorModifier, Assembly-CSharp, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        CustomData:
-          rid: -2
-        bindingType:
-          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.ColorBinding,
-            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        oldName: 
-        oldParameterAssemblyTypes: []
-    - rid: 3973877032564293636
-      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 3973877032564293637
-        routing: 0
-        isPredicted: 0
-        defaultInterpolationPath: 
-        guid: 9882cd0a-14a4-48c8-998a-6ea5b10e35be
-        archetypeData:
-          type: 0
-          minRange: 0
-          maxRange: 0
-          sampleRate: 0
-          floatCompression: 0
-          fields: []
-          sharedBinding: {fileID: 0}
-        unityComponent: {fileID: 8113085132751236480}
-        coherenceSync: {fileID: 0}
-        interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
-    - rid: 3973877032564293637
-      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        name: SetColor
-        monoAssemblyType: 
-        required: 0
-        enforcesLODingWhenFieldsOverriden: 0
-        valueSyncCallbackName: 
-        memberType: 8
-        parameterAssemblyTypes:
-        - UnityEngine.Color, UnityEngine
-        ownerType:
-          assemblyQualifiedName: ColorModifier, Assembly-CSharp, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        CustomData:
-          rid: -2
-        bindingType:
-          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        oldName: 
-        oldParameterAssemblyTypes: []
     - rid: 3973877032564293650
       type: {class: FloatAnimatorParameterBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
@@ -716,6 +628,52 @@ MonoBehaviour:
       type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
       data:
         component: {fileID: 2758022265868041115}
+    - rid: 3973877079595024405
+      type: {class: ColorBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3973877079595024406
+        routing: 0
+        isPredicted: 0
+        defaultInterpolationPath: 
+        guid: f5b152a3-9544-4289-9f1d-21b7d15c5755
+        archetypeData:
+          type: 11
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 11
+            bits: 32
+            minRange: 0
+            maxRange: 0
+            precision: 0.00000000023283064370807974
+            floatCompression: 0
+          sharedBinding: {fileID: 0}
+        unityComponent: {fileID: 8113085132751236480}
+        coherenceSync: {fileID: 0}
+        interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
+    - rid: 3973877079595024406
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: color
+        monoAssemblyType: UnityEngine.Color, UnityEngine
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: OnColorSync
+        memberType: 4
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: ColorModifier, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.ColorBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
 --- !u!114 &7438718047520773274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1069,7 +1027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaterialIndex>k__BackingField: 0
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 1, g: 0, b: 0.997756, a: 1}
 --- !u!4 &4493647673062478557 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3773368730949671011, guid: fad009b6dd5696d46aaec835338ae821, type: 3}

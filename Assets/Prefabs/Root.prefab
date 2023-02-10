@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4363520479740923555}
   - component: {fileID: 4880620676292462098}
   - component: {fileID: 3720165943417328502}
-  - component: {fileID: -140300134448593657}
   - component: {fileID: 5382209822232425747}
+  - component: {fileID: -5666028621929038354}
   m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
@@ -85,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-140300134448593657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253949311980050223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3adaa56a148b268419264635d33da3a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  time: 5
 --- !u!114 &5382209822232425747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +138,7 @@ MonoBehaviour:
       lodStepsActive: 1
     - component: {fileID: 3720165943417328502}
       lodStepsActive: 1
-    - component: {fileID: -140300134448593657}
+    - component: {fileID: -5666028621929038354}
       lodStepsActive: 1
     lodLevels:
     - distance: 0
@@ -187,8 +174,7 @@ MonoBehaviour:
   selectedSynchronizedPrefabOption: 2
   usingReflection: 0
   coherenceTag: 
-  componentActions:
-  - rid: 3973877160924938248
+  componentActions: []
   references:
     version: 2
     RefIds:
@@ -214,7 +200,7 @@ MonoBehaviour:
             bits: 32
             minRange: 0
             maxRange: 0
-            precision: 0.001
+            precision: 0.000011920927533992823
             floatCompression: 0
           sharedBinding: {fileID: 0}
         unityComponent: {fileID: 4363520479740923555}
@@ -286,7 +272,20 @@ MonoBehaviour:
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
-    - rid: 3973877160924938248
-      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
-      data:
-        component: {fileID: -140300134448593657}
+--- !u!114 &-5666028621929038354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253949311980050223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05dc711934e00ac428531f9cc456461c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GrowTime: 0.25
+  StayTime: 0.1
+  LeaveTime: 0.4
+  GrowValue: 0
+  rend: {fileID: 3720165943417328502}

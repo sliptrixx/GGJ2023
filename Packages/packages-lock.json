@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.hibzz.actionlist": {
+      "version": "file:com.hibzz.actionlist",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.hibzz.devmenu": {
       "version": "https://github.com/Hibzz-Games/Hibzz.DevMenu.git",
       "depth": 0,

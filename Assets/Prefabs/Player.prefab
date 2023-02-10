@@ -809,7 +809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackAction: {fileID: 870456941203518668, guid: 8cd625ea4ef79c54d905902abe52dc26, type: 3}
   RootObject: {fileID: 1253949311980050223, guid: 208c579afbc6c14448235c518b5d41fc, type: 3}
-  RootPositionOffset: {x: 0, y: 0, z: 5}
+  RootPositionOffset: {x: 0, y: 0.125, z: 2}
   RootRotationOffset: {x: 0, y: 90, z: 0}
 --- !u!1 &6273402528152889321
 GameObject:

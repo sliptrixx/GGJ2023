@@ -12,6 +12,7 @@ public class WhipAttackScript : MonoBehaviour
 
 	// reference to the renderer that has the grow material
 	[SerializeField] MeshRenderer rend;
+	[SerializeField] CapsuleCollider col;
 
 	protected CoherenceSync sync;
 
@@ -29,10 +30,18 @@ public class WhipAttackScript : MonoBehaviour
 			(progress) =>
 			{
 				GrowValue = Easing.Interpolate(0, 1, progress, Easing.Type.Linear);
+				col.height = Easing.Interpolate(0, 4.5f, progress, Easing.Type.Linear);
+				col.center = Vector3.up * Easing.Interpolate(0, 2.0f, progress, Easing.Type.Linear);
 				UpdateMaterial();
 			});
 
 		var wait = new WaitAction(StayTime);
+
+		// just before retracting, remove the collider
+		var disable_collider = new LambdaAction(() => 
+		{
+			col.gameObject.SetActive(false);
+		});
 
 		var leave = new ProgressiveLambdaAction(LeaveTime, null,
 			(progress) =>
@@ -50,6 +59,7 @@ public class WhipAttackScript : MonoBehaviour
 		var sequence = new SequenceAction();
 		sequence.AddAction(grow);
 		sequence.AddAction(wait);
+		sequence.AddAction(disable_collider);
 		sequence.AddAction(leave);
 		sequence.AddAction(destroy);
 		sequence.MarkReady();

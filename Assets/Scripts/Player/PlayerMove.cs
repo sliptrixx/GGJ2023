@@ -12,9 +12,12 @@ public class PlayerMove : MonoBehaviour
 	[SerializeField] ProceduralTilt Tilt;
 
 	Transform cam;
-	Rigidbody rb;
+	[HideInInspector] public Rigidbody rb;
 
 	Vector3 move_input;
+
+	float disableDuration = 0;
+	bool  isMovementEnabled => disableDuration <= 0;
 
 	[SerializeField] Animator animator;
 
@@ -31,6 +34,8 @@ public class PlayerMove : MonoBehaviour
 
 	void Update()
 	{
+		disableDuration -= Time.deltaTime;
+
 		var raw     = MoveAction.action.ReadValue<Vector2>();
 		var right   = new Vector3(cam.right.x, 0, cam.right.z).normalized;
 		var forward = new Vector3(cam.forward.x, 0, cam.forward.z).normalized;
@@ -40,17 +45,28 @@ public class PlayerMove : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		var gravity = (move_input == Vector3.zero) ? Physics.gravity : Vector3.zero;
-		rb.velocity = move_input * Speed + gravity;
+		// disable movement
+		if(isMovementEnabled) 
+		{
+			// gravity is only applied when the movement input is not applied
+			var gravity = (move_input == Vector3.zero) ? Physics.gravity : Vector3.zero;
+			rb.velocity = move_input * Speed + gravity;
 
-		// It's 1:13 am, and I'm pretty sure that the logic of this thing is convoluted but my brain
-		// is too fried to comprehend how to simplify it
-		
+			// also apply proceedural tilting based on movement direction
+			Tilt.Apply(move_input);
+
+			return; 
+		}
+
 		// set the speed in the animator
-		var velocity = move_input * Speed;
+		var velocity = rb.velocity;
+		velocity.y = 0;
 		animator.SetFloat("MoveSpeed", CustomMath.Remap(0, Speed, 0, 1, velocity.magnitude));
+	}
 
-		// also apply proceedural tilting based on movement direction
-		Tilt.Apply(move_input);
+	public void DisableMovement(float duration)
+	{
+		disableDuration = Mathf.Max(0, disableDuration);
+		disableDuration += duration;
 	}
 }

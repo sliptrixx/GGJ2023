@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   versionInfo: {fileID: 11400000, guid: 2191b6f902c97477baa32a7919010503, type: 2}
   runtimeKey: 8215704ba02645438f006666b8a639c2
-  schemaID: f89bda458e8ca391809dce80a78527909df693af
+  schemaID: a7d84fb9428b34b18b275d70468acaea189d89c2
   simulatorSlug: 
   localHost: 127.0.0.1
   localWorldUDPPort: 32001

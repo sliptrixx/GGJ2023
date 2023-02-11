@@ -42,14 +42,30 @@ public class SpawnManager : Singleton<SpawnManager>
 
 	void UpdatePlayerColor(CoherenceClientConnectionManager connectionManager)
 	{
-		// get the number of clients and based on that assign the color
-		var index = connectionManager.ClientConnectionCount - 1;
+		// a list representing the available colors that the player can pick from
+		List<Color> AvailableColors = new List<Color>(playerColors);
 
-		// color modifier component is used to change the color of a material (as defined by the material
-		// id in the inspector)
-		var colorModifier = CurrentPlayer.GetComponentInChildren<ColorModifier>();
-		colorModifier.SetColor(playerColors[index]);
+		// get all the players in the scene and extract the color information from
+		// their children's color modifier. If a match is found in the available colors
+		// list, it'll be removed as an option that the player can pick from
+		var players = FindObjectsOfType<PlayerName>();
+		foreach(var player in players)
+		{
+			if(player.gameObject == CurrentPlayer) { continue; } // skip current player
+			
+			// verify that the modifer extracted is valid and remove it's color from the list
+			var modifier = player.GetComponentInChildren<ColorModifier>();
+			if(modifier) 
+			{
+				AvailableColors.Remove(modifier.color);
+			}
+		}
 
+		// pick a random color from the available list of colors and apply it
+		var randID = Random.Range(0, AvailableColors.Count);
+		var colorModifer = CurrentPlayer.GetComponentInChildren<ColorModifier>();
+		colorModifer.SetColor(AvailableColors[randID]);
+		
 		// it's a one and done function, so let's unhook it
 		connectionManager.OnSynced -= UpdatePlayerColor;
 	}

@@ -48,9 +48,10 @@ public class PlayerMove : MonoBehaviour
 		// disable movement
 		if(isMovementEnabled) 
 		{
-			// gravity is only applied when the movement input is not applied
-			var gravity = (move_input == Vector3.zero) ? Physics.gravity : Vector3.zero;
-			rb.velocity = move_input * Speed + gravity;
+			// update the velocity to the expected value using forces
+			var expected = move_input * Speed;
+			expected.y = rb.velocity.y;
+			rb.AddForce(expected - rb.velocity, ForceMode.VelocityChange);
 
 			// also apply proceedural tilting based on movement direction
 			Tilt.Apply(move_input);

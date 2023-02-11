@@ -39,10 +39,10 @@ Material:
     - _EmssionLerpSpeed: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Thickness: 0.05
+    - _Thickness: 0.08
     m_Colors:
     - _BorderColor: {r: 0, g: 0.59184843, b: 0.8018868, a: 1}
-    - _Emission: {r: 0.1, g: 0.75, b: 0, a: 0}
+    - _Emission: {r: 0.2, g: 0.35, b: 0, a: 0}
     - _FillColor: {r: 0.17140305, g: 0.10751153, b: 0.18867919, a: 1}
     - _Tiling: {r: 0.75, g: 0.75, b: 0, a: 0}
   m_BuildTextureStacks: []

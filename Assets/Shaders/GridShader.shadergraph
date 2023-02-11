@@ -388,20 +388,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "51fdc392aed74025ad04875815dd67d5"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "bbe44ffc593d45ca99b90f97250b3b72"
-                },
-                "m_SlotId": 1
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "5479da47c90c4b5cb3a6741e6d28cd51"
                 },
                 "m_SlotId": 0
@@ -607,6 +593,20 @@
                     "m_Id": "0f19253c0708421590dc51923e7e90ea"
                 },
                 "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "bbdb1156d7bb462fb517695f64e80a8a"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "bbe44ffc593d45ca99b90f97250b3b72"
+                },
+                "m_SlotId": 1
             }
         },
         {
@@ -851,7 +851,7 @@
     },
     "m_PreviewData": {
         "serializedMesh": {
-            "m_SerializedMesh": "{\"mesh\":{\"instanceID\":0}}",
+            "m_SerializedMesh": "{\"mesh\":{\"fileID\":10210,\"guid\":\"0000000000000000e000000000000000\",\"type\":0}}",
             "m_Guid": ""
         },
         "preventRotation": false
@@ -3943,18 +3943,18 @@
         "key1": {
             "r": 0.0,
             "g": 0.800000011920929,
-            "b": 0.3155483305454254,
+            "b": 0.611947238445282,
             "a": 1.0
         },
         "key2": {
-            "r": 0.800000011920929,
-            "g": 0.3701138198375702,
+            "r": 0.0,
+            "g": 0.0,
             "b": 0.0,
             "a": 0.0
         },
         "key3": {
-            "r": 0.800000011920929,
-            "g": 0.3701138198375702,
+            "r": 0.0,
+            "g": 0.0,
             "b": 0.0,
             "a": 0.0
         },
@@ -3984,8 +3984,8 @@
         },
         "ctime0": 0,
         "ctime1": 65535,
-        "ctime2": 65535,
-        "ctime3": 65535,
+        "ctime2": 0,
+        "ctime3": 0,
         "ctime4": 0,
         "ctime5": 0,
         "ctime6": 0,

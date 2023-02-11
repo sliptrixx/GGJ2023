@@ -48,12 +48,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _Clip: 1
-    - _Grow: 1
+    - _Grow: 0
     - _Metalic: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scale: 0
     - _Smoothness: 0
     m_Colors:
-    - _Color: {r: 0.25567815, g: 0.396707, b: 0.5377358, a: 1}
+    - _Color: {r: 1.471698, g: 0.22287945, b: 0.03332142, a: 1}
   m_BuildTextureStacks: []

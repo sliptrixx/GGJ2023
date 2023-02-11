@@ -1,3 +1,4 @@
+using Cinemachine;
 using Coherence.Runtime;
 using Coherence.Toolkit;
 using Hibzz.Singletons;
@@ -8,6 +9,7 @@ public class SpawnManager : Singleton<SpawnManager>
 {
 	[SerializeField] GameObject PlayerPrefab;
 	[SerializeField] float SpawnRadius;
+	[SerializeField] CinemachineVirtualCamera vcam;
 
 	[Space]
 	[SerializeField] List<Color> playerColors;
@@ -32,6 +34,10 @@ public class SpawnManager : Singleton<SpawnManager>
 		// all connection details are not available at this point
 		var mono = ConnectionManager.Instance.MonoBridge;
 		mono.ClientConnections.OnSynced += UpdatePlayerColor;
+
+		// link the vcam to the spawned player
+		vcam.gameObject.SetActive(true);
+		vcam.Follow = CurrentPlayer.transform;
 	}
 
 	void UpdatePlayerColor(CoherenceClientConnectionManager connectionManager)

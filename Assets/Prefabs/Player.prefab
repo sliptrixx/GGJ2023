@@ -710,6 +710,7 @@ MonoBehaviour:
   MoveAction: {fileID: -6246003900204893148, guid: 8cd625ea4ef79c54d905902abe52dc26, type: 3}
   Speed: 3.5
   Tilt: {fileID: 2758022265868041115}
+  rb: {fileID: 0}
   animator: {fileID: 4852935339479056761}
 --- !u!114 &7707667903956413878
 MonoBehaviour:
@@ -809,7 +810,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackAction: {fileID: 870456941203518668, guid: 8cd625ea4ef79c54d905902abe52dc26, type: 3}
   RootObject: {fileID: 1253949311980050223, guid: 208c579afbc6c14448235c518b5d41fc, type: 3}
-  RootPositionOffset: {x: 0, y: 0.125, z: 2}
+  RootPositionOffset: {x: 0, y: 0.1125, z: 2}
   RootRotationOffset: {x: 0, y: 90, z: 0}
 --- !u!1 &6273402528152889321
 GameObject:
@@ -1051,7 +1052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaterialIndex>k__BackingField: 0
-  color: {r: 1, g: 0, b: 0.997756, a: 1}
+  color: {r: 0.5294118, g: 0.7647059, b: 0.4509804, a: 1}
 --- !u!4 &4493647673062478557 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3773368730949671011, guid: fad009b6dd5696d46aaec835338ae821, type: 3}

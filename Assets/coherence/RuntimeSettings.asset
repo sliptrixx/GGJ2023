@@ -26,7 +26,7 @@ MonoBehaviour:
   worldsAPIPort: 64002
   localHttpServerHost: localhost
   localHttpServerPort: 42006
-  localDevelopmentMode: 0
+  localDevelopmentMode: 1
   useDebugStreams: 0
   organizationID: cf7b4etbo1huni32ft00
   projectID: cf7b4etbo1huni32ft0g

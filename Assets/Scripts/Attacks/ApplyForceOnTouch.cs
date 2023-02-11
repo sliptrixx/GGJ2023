@@ -29,7 +29,7 @@ public class ApplyForceOnTouch : MonoBehaviour
 			otherPM.DisableMovement(DisableDuration);
 			
 			// apply the explosive force
-			otherPM.rb.AddForce(DirectionRepresentation.forward * ForceToApply, ForceMode.Impulse);
+			otherPM.rb.AddForce(-DirectionRepresentation.right * ForceToApply, ForceMode.Impulse);
 		}
 	}
 }

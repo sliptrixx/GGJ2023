@@ -6,13 +6,18 @@ using UnityEngine;
 
 public class WhipAttackScript : MonoBehaviour
 {
+	[Header("Grow Properties")]
 	[SerializeField] float GrowTime = 0.5f;
 	[SerializeField] float StayTime = 1.0f;
 	[SerializeField] float LeaveTime = 0.5f;
 
 	// reference to the renderer that has the grow material
+	[Header("References")]
 	[SerializeField] MeshRenderer rend;
-	[SerializeField] CapsuleCollider col;
+
+	[Header("Force properties")]
+	[SerializeField] Transform forceTrigger;
+	[SerializeField] Vector2 forceMoveBounds;
 
 	protected CoherenceSync sync;
 
@@ -30,8 +35,12 @@ public class WhipAttackScript : MonoBehaviour
 			(progress) =>
 			{
 				GrowValue = Easing.Interpolate(0, 1, progress, Easing.Type.Linear);
-				col.height = Easing.Interpolate(0, 4.5f, progress, Easing.Type.Linear);
-				col.center = Vector3.up * Easing.Interpolate(0, 2.0f, progress, Easing.Type.Linear);
+
+				// move the trigger pos along the line
+				var triggerPos = forceTrigger.localPosition;
+				triggerPos.x = Easing.Interpolate(forceMoveBounds.x, forceMoveBounds.y, progress, Easing.Type.Linear);
+				forceTrigger.localPosition = triggerPos;
+				
 				UpdateMaterial();
 			});
 
@@ -40,7 +49,7 @@ public class WhipAttackScript : MonoBehaviour
 		// just before retracting, remove the collider
 		var disable_collider = new LambdaAction(() => 
 		{
-			col.gameObject.SetActive(false);
+			forceTrigger.gameObject.SetActive(false);
 		});
 
 		var leave = new ProgressiveLambdaAction(LeaveTime, null,

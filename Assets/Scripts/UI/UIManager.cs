@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -25,10 +26,18 @@ public class UIManager : Singleton<UIManager>
 	[Tooltip("Reference to the disconnect UI panel")]
 	[SerializeField] GameObject DisconnectUI;
 
+	[Header("HUD Options")]
+	[Tooltip("Reference to the HUD UI")]
+	[SerializeField] GameObject HudUI;
+
+	[Tooltip("Reference to the Attack cooldown image")]
+	[SerializeField] Image AttackCooldown;
+
 	void Start()
 	{
 		ConnectUI.SetActive(true);
 		DisconnectUI.SetActive(false);
+		HudUI.SetActive(false);
 	}
 
 	void OnEnable()
@@ -69,6 +78,15 @@ public class UIManager : Singleton<UIManager>
 		DisconnectUI.SetActive(show);
 	}
 
+	/// <summary>
+	/// Show/hide the HUD
+	/// </summary>
+	/// <param name="show">true=show the hud, false=hide the hud</param>
+	public void ShowHUD(bool show)
+	{
+		HudUI.SetActive(show);
+	}
+
 	public void CycleServer()
 	{
 		CurrentServerText.text = ConnectionManager.Instance.CycleServer();
@@ -91,5 +109,11 @@ public class UIManager : Singleton<UIManager>
 		}
 
 		return NameField.text;
+	}
+
+	public void UpdateAttackCooldown(float progress)
+	{
+		progress = Mathf.Clamp01(progress);
+		AttackCooldown.fillAmount = progress;
 	}
 }

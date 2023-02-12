@@ -33,6 +33,9 @@ public class UIManager : Singleton<UIManager>
 	[Tooltip("Reference to the Attack cooldown image")]
 	[SerializeField] Image AttackCooldown;
 
+	[Tooltip("The text that shows how long the player must wait for the game to start")]
+	[SerializeField] TMP_Text WaitTimerText;
+
 	void Start()
 	{
 		ConnectUI.SetActive(true);
@@ -85,6 +88,7 @@ public class UIManager : Singleton<UIManager>
 	public void ShowHUD(bool show)
 	{
 		HudUI.SetActive(show);
+		WaitTimerText.text = "Waiting for Players...";
 	}
 
 	public void CycleServer()
@@ -115,5 +119,21 @@ public class UIManager : Singleton<UIManager>
 	{
 		progress = Mathf.Clamp01(progress);
 		AttackCooldown.fillAmount = progress;
+	}
+
+	public void ShowPauseMessage()
+	{
+		WaitTimerText.gameObject.SetActive(true);
+		WaitTimerText.text = "Waiting for Players...";
+	}
+
+	public void ShowWaitTimer(bool show)
+	{
+		WaitTimerText.gameObject.SetActive(show);
+	}
+
+	public void UpdateWaitTimer(float time)
+	{
+		WaitTimerText.text = $"Waiting for more players...\nGame will begin in {Mathf.RoundToInt(time)} seconds";
 	}
 }

@@ -4227,7 +4227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5344619859079249798, guid: 8349b98bbc6b00942b4e9f20639d7c99, type: 3}
       propertyPath: waitTime
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5344619859079249798, guid: 8349b98bbc6b00942b4e9f20639d7c99, type: 3}
       propertyPath: numberOfPlayersToStartGame

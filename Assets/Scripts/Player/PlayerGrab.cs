@@ -98,9 +98,9 @@ public class PlayerGrab : MonoBehaviour
 		}
 	}
 
-	void HandleAnotherPlayerPickup(CoherenceSync other)
+	void HandleAnotherPlayerPickup(GameObject other)
 	{
-		if(other != GetComponent<CoherenceSync>())
+		if(other != gameObject)
 		{
 			// first let's disconnect the one and done event
 			decryptable.GetParent().OnEntityStartCarryObject -= HandleAnotherPlayerPickup;

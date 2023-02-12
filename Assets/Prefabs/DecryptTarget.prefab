@@ -114,7 +114,19 @@ MonoBehaviour:
       m_Calls: []
   OnStateAuthority:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7096030946575695623}
+        m_TargetAssemblyTypeName: DecryptableObject, Assembly-CSharp
+        m_MethodName: PerformCarry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnInputAuthority:
     m_PersistentCalls:
       m_Calls: []
@@ -182,7 +194,6 @@ MonoBehaviour:
   bindings:
   - rid: 3973877188810506247
   - rid: 3973877188810506275
-  - rid: 3973877188810506277
   - rid: 3973877188810506279
   onNetworkedInstantiation:
     m_PersistentCalls:
@@ -294,52 +305,6 @@ MonoBehaviour:
           rid: -2
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.ReferenceBinding,
-            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        oldName: 
-        oldParameterAssemblyTypes: []
-    - rid: 3973877188810506277
-      type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 3973877188810506278
-        routing: 0
-        isPredicted: 0
-        defaultInterpolationPath: 
-        guid: ac5ea8d8-cd32-4ef3-8f6c-c25618c79364
-        archetypeData:
-          type: 3
-          minRange: 0
-          maxRange: 0
-          sampleRate: 20
-          floatCompression: 0
-          fields:
-          - type: 3
-            bits: 1
-            minRange: 0
-            maxRange: 0
-            precision: 0
-            floatCompression: 0
-          sharedBinding: {fileID: 0}
-        unityComponent: {fileID: 7096030946575695623}
-        coherenceSync: {fileID: 0}
-        interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
-    - rid: 3973877188810506278
-      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        name: enabled
-        monoAssemblyType: System.Boolean, mscorlib
-        required: 0
-        enforcesLODingWhenFieldsOverriden: 1
-        valueSyncCallbackName: 
-        memberType: 16
-        parameterAssemblyTypes: []
-        ownerType:
-          assemblyQualifiedName: DecryptableObject, Assembly-CSharp, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        CustomData:
-          rid: -2
-        bindingType:
-          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.BoolBinding,
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []

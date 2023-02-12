@@ -9,6 +9,8 @@ public class DecryptableObject : MonoBehaviour
 	[SerializeField] float TimeToHack = 3;
 	[SerializeField] float TimeToLose = 0.5f;
 
+	public GameObject IsCarriedByGameObj = null;
+
 	[Header("Sync Variables")]
 	public CoherenceSync IsCarriedBy = null;
 
@@ -19,7 +21,7 @@ public class DecryptableObject : MonoBehaviour
 	Rigidbody rb;
 	MeshRenderer rend;
 
-	public System.Action<CoherenceSync> OnEntityStartCarryObject;
+	public System.Action<GameObject> OnEntityStartCarryObject;
 
 	void Awake()
 	{
@@ -62,35 +64,48 @@ public class DecryptableObject : MonoBehaviour
 			return false; 
 		}
 
-		if(sync.RequestAuthority(Coherence.AuthorityType.State))
+		IsCarriedByGameObj = requester;
+
+		if (sync.HasStateAuthority)
 		{
-			// update the variable
-			IsCarriedBy = requester.GetComponent<CoherenceSync>();
-
-			// disable the rigidbody and the trigger
-			Trigger.enabled = false;
-			rb.isKinematic = true;
-
-			// parent the decryptable to the requester
-			transform.SetParent(requester.transform);
-			transform.localPosition = Vector3.up * 2;
-			transform.rotation = Quaternion.identity;
-
-			// inform others who maybe trying to still grab it
-			OnEntityStartCarryObject?.Invoke(IsCarriedBy);
-
+			PerformCarry();
 			return true;
 		}
 
-		// failed to gain authority
-		return false;
+		sync.RequestAuthority(Coherence.AuthorityType.Full);
+		return true;
+	}
+
+	public void PerformCarry()
+	{
+		// skip if not carried by anyone
+		if (!IsCarriedByGameObj) 
+		{
+			IsCarriedBy = null;
+			return; 
+		}
+
+		// update sync variable
+		IsCarriedBy = IsCarriedByGameObj.GetComponent<CoherenceSync>();
+
+
+		// disable the rigidbody and the trigger
+		Trigger.enabled = false;
+		rb.isKinematic = true;
+
+		// parent the decryptable to the requester
+		transform.SetParent(IsCarriedByGameObj.transform);
+		transform.localPosition = Vector3.up * 2;
+		transform.rotation = Quaternion.identity;
+
+		// inform others who maybe trying to still grab it
+		OnEntityStartCarryObject?.Invoke(IsCarriedByGameObj);
 	}
 
 	public bool DropObject(GameObject requester)
 	{
 		// validate that the one requesting the drop is the actual requester
-		var requesterSync = requester.GetComponent<CoherenceSync>();
-		if(IsCarriedBy && requesterSync == IsCarriedBy)
+		if(requester == IsCarriedByGameObj)
 		{
 			// unparent the decryptable from the requester
 			transform.SetParent(null);
@@ -101,6 +116,7 @@ public class DecryptableObject : MonoBehaviour
 
 			// update the isCarriedBy reference to null
 			IsCarriedBy = null;
+			IsCarriedByGameObj = null;
 
 			return true;
 		}

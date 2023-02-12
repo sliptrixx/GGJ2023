@@ -9,6 +9,7 @@ public class LobbyManager : Singleton<LobbyManager>
 	[Header("Lobby Properties")]
 	[SerializeField] int numberOfPlayersToStartGame = 2;
 	[SerializeField] float waitTime = 15.0f;
+	[SerializeField] float gameTime = 120.0f;
 
 	[Header("Decryptable Objective Properties")]
 	[SerializeField] GameObject DecryptablePrefab;
@@ -24,6 +25,9 @@ public class LobbyManager : Singleton<LobbyManager>
 
 	[OnValueSynced(nameof(OnWaitTimerChanged))]
 	public float waitTimer = 0;
+
+	[OnValueSynced(nameof(OnGameTimerChanged))]
+	public float gameTimer = 0;
 
 	public CoherenceSync CurrentObjectiveSync;
 	public GameObject CurrentObjective { get; protected set; }
@@ -108,6 +112,10 @@ public class LobbyManager : Singleton<LobbyManager>
 
 			hasGameStarted = true;
 			OnGameStartedUpdate(false, hasGameStarted);
+
+			prev = gameTimer;
+			gameTimer = gameTime;
+			OnGameTimerChanged(prev, gameTimer);
 		}
 	}
 
@@ -121,6 +129,36 @@ public class LobbyManager : Singleton<LobbyManager>
 			// spawn a new objective for the player
 			CurrentObjective = Instantiate(DecryptablePrefab, spawnPoint.position, Quaternion.identity);
 			CurrentObjectiveSync = CurrentObjective.GetComponent<CoherenceSync>();
+		}
+
+		if(gameTimer > 0)
+		{
+			float prev = gameTimer;
+			gameTimer -= Time.deltaTime;
+			gameTimer = Mathf.Clamp(gameTimer, 0, gameTime);
+			OnGameTimerChanged(prev, gameTimer);
+		}
+
+		if(gameTimer <= 0)
+		{
+			// find winner print and restart lobby
+			var players = FindObjectsOfType<PlayerName>();
+
+			int highscore = 0;
+			string winner = "";
+			
+			foreach(var player in players)
+			{
+				if(player.CurrentScore > highscore)
+				{
+					highscore = player.CurrentScore;
+					winner = player.playerName;
+				}
+			}
+
+			Debug.Log($"{winner} WON!");
+
+			ResetLobby();
 		}
 	}
 
@@ -156,6 +194,10 @@ public class LobbyManager : Singleton<LobbyManager>
 		waitTimer = isGameReadyToStart ? 15 : 0;
 		OnWaitTimerChanged(prev, waitTimer);
 
+		prev = gameTimer;
+		gameTimer = 0;
+		OnWaitTimerChanged(prev, gameTimer);
+
 		// destroy current objectives
 		if(CurrentObjectiveSync)
 		{
@@ -189,5 +231,10 @@ public class LobbyManager : Singleton<LobbyManager>
 	public void OnGameStartedUpdate(bool old, bool curr)
 	{
 		UIManager.Instance.ShowWaitTimer(!curr);
+	}
+
+	public void OnGameTimerChanged(float old, float curr)
+	{
+		UIManager.Instance.UpdateGameTimer(curr);
 	}
 }

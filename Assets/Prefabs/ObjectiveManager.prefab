@@ -131,6 +131,8 @@ MonoBehaviour:
   - rid: 3973877188810506253
   - rid: 3973877188810506257
   - rid: 3973877188810506260
+  - rid: 3973877205595062307
+  - rid: 3973877205595062309
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -304,14 +306,14 @@ MonoBehaviour:
           minRange: 0
           maxRange: 0
           sampleRate: 20
-          floatCompression: 0
+          floatCompression: 2
           fields:
           - type: 4
             bits: 32
-            minRange: 0
-            maxRange: 0
+            minRange: -2147483
+            maxRange: 2147482
             precision: 0.001
-            floatCompression: 0
+            floatCompression: 2
           sharedBinding: {fileID: 0}
         unityComponent: {fileID: 5344619859079249798}
         coherenceSync: {fileID: 0}
@@ -340,6 +342,98 @@ MonoBehaviour:
       type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
       data:
         component: {fileID: 5344619859079249798}
+    - rid: 3973877205595062307
+      type: {class: FloatBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3973877205595062308
+        routing: 0
+        isPredicted: 0
+        defaultInterpolationPath: 
+        guid: 64537189-0bf4-4c34-9288-803ead1b29bb
+        archetypeData:
+          type: 4
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 2
+          fields:
+          - type: 4
+            bits: 32
+            minRange: -2147483
+            maxRange: 2147482
+            precision: 0.001
+            floatCompression: 2
+          sharedBinding: {fileID: 0}
+        unityComponent: {fileID: 5344619859079249798}
+        coherenceSync: {fileID: 0}
+        interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
+    - rid: 3973877205595062308
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: gameTimer
+        monoAssemblyType: System.Single, mscorlib
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: OnGameTimerChanged
+        memberType: 4
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: LobbyManager, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.FloatBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 3973877205595062309
+      type: {class: ReferenceBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3973877205595062310
+        routing: 0
+        isPredicted: 0
+        defaultInterpolationPath: 
+        guid: 0e56cdba-7235-4005-83ba-c824f36cd1a8
+        archetypeData:
+          type: 9
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 9
+            bits: 20
+            minRange: 0
+            maxRange: 0
+            precision: 0
+            floatCompression: 0
+          sharedBinding: {fileID: 0}
+        unityComponent: {fileID: 5344619859079249798}
+        coherenceSync: {fileID: 0}
+        interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
+    - rid: 3973877205595062310
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: CurrentObjectiveSync
+        monoAssemblyType: Coherence.Toolkit.CoherenceSync, Coherence.Toolkit
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 4
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: LobbyManager, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.ReferenceBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
 --- !u!114 &-148128501085250014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,10 +460,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfPlayersToStartGame: 2
-  waitTime: 15
+  waitTime: 10
+  gameTime: 120
   DecryptablePrefab: {fileID: 3547737615233420511, guid: 67a7e1f876126984aaca8e1ee18ec7e6, type: 3}
   DecryptableSpawnPoints: []
   isGameReadyToStart: 0
   hasGameStarted: 0
   waitTimer: 0
+  gameTimer: 0
   CurrentObjectiveSync: {fileID: 0}

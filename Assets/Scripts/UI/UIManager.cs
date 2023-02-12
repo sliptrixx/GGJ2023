@@ -39,6 +39,8 @@ public class UIManager : Singleton<UIManager>
 	[Tooltip("The image representing the hack progress object")]
 	[SerializeField] Image HackProgress;
 
+	[SerializeField] TMP_Text GameTimerText;
+
 	Camera cam;
 
 	void Start()
@@ -141,7 +143,15 @@ public class UIManager : Singleton<UIManager>
 
 	public void UpdateWaitTimer(float time)
 	{
-		WaitTimerText.text = $"Waiting for more players...\nGame will begin in {Mathf.RoundToInt(time)} seconds";
+		int time_int = Mathf.RoundToInt(time);
+		if(time_int == 0)
+		{
+			WaitTimerText.text = $"Waiting for more players...";
+		}
+		else
+		{
+			WaitTimerText.text = $"Waiting for more players...\nGame will begin in {time_int} seconds";
+		}
 	}
 
 	public void UpdateHackProgress(float progress, Transform target)
@@ -160,5 +170,20 @@ public class UIManager : Singleton<UIManager>
 			var screenpos = cam.WorldToScreenPoint(target.position);
 			HackProgress.rectTransform.position = screenpos;
 		}
+	}
+
+	public void UpdateGameTimer(float time)
+	{
+		int time_int = Mathf.RoundToInt(time);
+		if(time_int <= 0)
+		{
+			GameTimerText.gameObject.SetActive(false);
+			return;
+		}
+
+		GameTimerText.gameObject.SetActive(true);
+
+		TimeSpan t = TimeSpan.FromSeconds(time_int);
+		GameTimerText.text = t.ToString(@"mm\:ss");
 	}
 }

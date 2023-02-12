@@ -134,7 +134,6 @@ public class ConnectionManager : Singleton<ConnectionManager>
 	public void Disconnect()
 	{
 		MonoBridge.Disconnect();
-		
 	}
 
 	async Task CreateAndJoin(string region)

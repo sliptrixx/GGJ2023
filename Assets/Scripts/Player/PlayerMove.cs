@@ -66,6 +66,6 @@ public class PlayerMove : MonoBehaviour
 	public void DisableMovement(float duration)
 	{
 		disableDuration = Mathf.Max(0, disableDuration);
-		disableDuration += duration;
+		disableDuration = duration;
 	}
 }

@@ -36,11 +36,18 @@ public class UIManager : Singleton<UIManager>
 	[Tooltip("The text that shows how long the player must wait for the game to start")]
 	[SerializeField] TMP_Text WaitTimerText;
 
+	[Tooltip("The image representing the hack progress object")]
+	[SerializeField] Image HackProgress;
+
+	Camera cam;
+
 	void Start()
 	{
 		ConnectUI.SetActive(true);
 		DisconnectUI.SetActive(false);
 		HudUI.SetActive(false);
+
+		cam = Camera.main;
 	}
 
 	void OnEnable()
@@ -135,5 +142,23 @@ public class UIManager : Singleton<UIManager>
 	public void UpdateWaitTimer(float time)
 	{
 		WaitTimerText.text = $"Waiting for more players...\nGame will begin in {Mathf.RoundToInt(time)} seconds";
+	}
+
+	public void UpdateHackProgress(float progress, Transform target)
+	{
+		if(progress <= 0 || progress >= 1) 
+		{ 
+			HackProgress.gameObject.SetActive(false);
+			return;
+		}
+
+		HackProgress.gameObject.SetActive(true);
+		HackProgress.fillAmount = progress;
+
+		if(target)
+		{
+			var screenpos = cam.WorldToScreenPoint(target.position);
+			HackProgress.rectTransform.position = screenpos;
+		}
 	}
 }

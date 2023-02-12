@@ -55,8 +55,6 @@ public class PlayerMove : MonoBehaviour
 
 			// also apply proceedural tilting based on movement direction
 			Tilt.Apply(move_input);
-
-			return; 
 		}
 
 		// set the speed in the animator

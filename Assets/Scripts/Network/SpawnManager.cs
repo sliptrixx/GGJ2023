@@ -40,6 +40,12 @@ public class SpawnManager : Singleton<SpawnManager>
 		vcam.Follow = CurrentPlayer.transform;
 	}
 
+	public void DespawnPlayer()
+	{
+		Destroy(CurrentPlayer);
+		CurrentPlayer = null;
+	}
+
 	void UpdatePlayerColor(CoherenceClientConnectionManager connectionManager)
 	{
 		// a list representing the available colors that the player can pick from

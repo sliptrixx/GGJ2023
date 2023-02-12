@@ -8,6 +8,7 @@ using Coherence.Connection;
 using Coherence;
 using System.Net;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class ConnectionManager : Singleton<ConnectionManager>
 {
@@ -128,6 +129,12 @@ public class ConnectionManager : Singleton<ConnectionManager>
 		// update the current region and return it to the caller
 		CurrentRegion = Regions[index];
 		return CurrentRegion;
+	}
+
+	public void Disconnect()
+	{
+		MonoBridge.Disconnect();
+		
 	}
 
 	async Task CreateAndJoin(string region)

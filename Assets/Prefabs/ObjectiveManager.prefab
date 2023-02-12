@@ -133,6 +133,7 @@ MonoBehaviour:
   - rid: 3973877188810506260
   - rid: 3973877205595062307
   - rid: 3973877205595062309
+  - rid: 3973877205595062336
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -434,6 +435,52 @@ MonoBehaviour:
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
+    - rid: 3973877205595062336
+      type: {class: StringBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3973877205595062337
+        routing: 0
+        isPredicted: 0
+        defaultInterpolationPath: 
+        guid: 9954b028-4fc5-4111-81a3-f2bd544c1e00
+        archetypeData:
+          type: 5
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 5
+            bits: 6
+            minRange: 0
+            maxRange: 0
+            precision: 0
+            floatCompression: 0
+          sharedBinding: {fileID: 0}
+        unityComponent: {fileID: 5344619859079249798}
+        coherenceSync: {fileID: 0}
+        interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
+    - rid: 3973877205595062337
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: winner
+        monoAssemblyType: System.String, mscorlib
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: OnWinnerChanged
+        memberType: 4
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: LobbyManager, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.StringBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
 --- !u!114 &-148128501085250014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,4 +515,5 @@ MonoBehaviour:
   hasGameStarted: 0
   waitTimer: 0
   gameTimer: 0
+  winner: 
   CurrentObjectiveSync: {fileID: 0}

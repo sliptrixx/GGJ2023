@@ -149,7 +149,7 @@ public class LobbyManager : Singleton<LobbyManager>
 			var players = FindObjectsOfType<PlayerName>();
 
 			int highscore = 0;
-			string winner = "";
+			winner = "";
 			
 			foreach(var player in players)
 			{

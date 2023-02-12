@@ -30,6 +30,10 @@ public class ApplyForceOnTouch : MonoBehaviour
 			
 			// apply the explosive force
 			otherPM.rb.AddForce(-DirectionRepresentation.right * ForceToApply, ForceMode.Impulse);
+
+			// if the player is carrying something, force drop it
+			var otherPG = other.GetComponent<PlayerGrab>();
+			otherPG.StopGrabbing();
 		}
 	}
 }

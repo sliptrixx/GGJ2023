@@ -79,16 +79,21 @@ public class PlayerGrab : MonoBehaviour
 
 	void StopGrabbing(InputAction.CallbackContext ctx)
 	{
+		StopGrabbing();
+	}
+
+	public void StopGrabbing()
+	{
 		isGrabbing = false;
 		move.enabled = true;
 
-		if(decryptable)
+		if (decryptable)
 		{
 			decryptable.GetParent().OnEntityStartCarryObject -= HandleAnotherPlayerPickup;
 
-			if (decryptable.GetParent().DropObject(gameObject)) 
+			if (decryptable.GetParent().DropObject(gameObject))
 			{
-				attack.enabled = true; 
+				attack.enabled = true;
 			}
 		}
 	}

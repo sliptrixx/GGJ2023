@@ -1,3 +1,4 @@
+using Coherence.Toolkit;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,13 +43,16 @@ public class PlayerGrab : MonoBehaviour
 		{
 			grabProgress += Time.deltaTime / TimeToGrab;
 			grabProgress = Mathf.Clamp01(grabProgress);
-			UIManager.Instance.UpdateHackProgress(grabProgress, decryptable.transform);
+
+			
+
+			UIManager.Instance.UpdateHackProgress(grabProgress, decryptable?.transform);
 		}
 		else if(!isGrabbing && grabProgress > 0)
 		{
 			grabProgress -= Time.deltaTime / GrabCooldown;
 			grabProgress = Mathf.Clamp01(grabProgress);
-			UIManager.Instance.UpdateHackProgress(grabProgress, decryptable.transform);
+			UIManager.Instance.UpdateHackProgress(grabProgress, decryptable?.transform);
 		}
 
 		if(grabProgress >= 1)
@@ -72,6 +76,7 @@ public class PlayerGrab : MonoBehaviour
 		{
 			isGrabbing = true;
 			move.enabled = false;
+			decryptable.GetParent().OnEntityStartCarryObject += HandleAnotherPlayerPickup;
 		}
 	}
 
@@ -79,6 +84,28 @@ public class PlayerGrab : MonoBehaviour
 	{
 		isGrabbing = false;
 		move.enabled = true;
+
+		if(decryptable)
+		{
+			decryptable.GetParent().OnEntityStartCarryObject -= HandleAnotherPlayerPickup;
+
+			if (decryptable.GetParent().DropObject(gameObject)) 
+			{
+				attack.enabled = true; 
+			}
+		}
+	}
+
+	void HandleAnotherPlayerPickup(CoherenceSync other)
+	{
+		if(other != GetComponent<CoherenceSync>())
+		{
+			// first let's disconnect the one and done event
+			decryptable.GetParent().OnEntityStartCarryObject -= HandleAnotherPlayerPickup;
+
+			isGrabbing = false;
+			move.enabled = true;
+		}
 	}
 
 	void OnTriggerEnter(Collider other)

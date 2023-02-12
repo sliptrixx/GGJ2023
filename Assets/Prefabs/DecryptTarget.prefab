@@ -181,6 +181,7 @@ MonoBehaviour:
   customBindings: []
   bindings:
   - rid: 3973877188810506247
+  - rid: 3973877188810506275
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -244,6 +245,52 @@ MonoBehaviour:
           rid: -2
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.TransformBindings.PositionBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 3973877188810506275
+      type: {class: ReferenceBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3973877188810506276
+        routing: 0
+        isPredicted: 0
+        defaultInterpolationPath: 
+        guid: f4c54bc7-6fd9-4a4e-9715-98d2d6819df3
+        archetypeData:
+          type: 9
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 9
+            bits: 20
+            minRange: 0
+            maxRange: 0
+            precision: 0
+            floatCompression: 0
+          sharedBinding: {fileID: 0}
+        unityComponent: {fileID: 7096030946575695623}
+        coherenceSync: {fileID: 0}
+        interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
+    - rid: 3973877188810506276
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: IsCarriedBy
+        monoAssemblyType: Coherence.Toolkit.CoherenceSync, Coherence.Toolkit
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 4
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: DecryptableObject, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.ReferenceBinding,
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
@@ -339,3 +386,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trigger: {fileID: 1412878418042765149}
+  IsCarriedBy: {fileID: 0}

@@ -13,6 +13,8 @@ public class DecryptableObject : MonoBehaviour
 	CoherenceSync sync;
 	Rigidbody rb;
 
+	public System.Action<CoherenceSync> OnEntityStartCarryObject;
+
 	void Awake()
 	{
 		sync = GetComponent<CoherenceSync>();
@@ -36,16 +38,39 @@ public class DecryptableObject : MonoBehaviour
 			Trigger.enabled = false;
 			rb.isKinematic = true;
 
-			// parent the rigidbody to the requester
+			// parent the decryptable to the requester
 			transform.SetParent(requester.transform);
 			transform.localPosition = Vector3.up * 2;
 
 			// inform others who maybe trying to still grab it
+			OnEntityStartCarryObject?.Invoke(IsCarriedBy);
 
 			return true;
 		}
 
 		// failed to gain authority
+		return false;
+	}
+
+	public bool DropObject(GameObject requester)
+	{
+		// validate that the one requesting the drop is the actual requester
+		var requesterSync = requester.GetComponent<CoherenceSync>();
+		if(IsCarriedBy && requesterSync == IsCarriedBy)
+		{
+			// unparent the decryptable from the requester
+			transform.SetParent(null);
+
+			// enable the rigidbody and the trigger
+			rb.isKinematic = false;
+			Trigger.enabled = true;
+
+			// update the isCarriedBy reference to null
+			IsCarriedBy = null;
+
+			return true;
+		}
+
 		return false;
 	}
 }

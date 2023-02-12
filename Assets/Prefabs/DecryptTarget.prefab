@@ -182,6 +182,8 @@ MonoBehaviour:
   bindings:
   - rid: 3973877188810506247
   - rid: 3973877188810506275
+  - rid: 3973877188810506277
+  - rid: 3973877188810506279
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -196,7 +198,8 @@ MonoBehaviour:
   selectedSynchronizedPrefabOption: 2
   usingReflection: 0
   coherenceTag: 
-  componentActions: []
+  componentActions:
+  - rid: 3973877188810506281
   references:
     version: 2
     RefIds:
@@ -294,6 +297,102 @@ MonoBehaviour:
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
+    - rid: 3973877188810506277
+      type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3973877188810506278
+        routing: 0
+        isPredicted: 0
+        defaultInterpolationPath: 
+        guid: ac5ea8d8-cd32-4ef3-8f6c-c25618c79364
+        archetypeData:
+          type: 3
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 3
+            bits: 1
+            minRange: 0
+            maxRange: 0
+            precision: 0
+            floatCompression: 0
+          sharedBinding: {fileID: 0}
+        unityComponent: {fileID: 7096030946575695623}
+        coherenceSync: {fileID: 0}
+        interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
+    - rid: 3973877188810506278
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: enabled
+        monoAssemblyType: System.Boolean, mscorlib
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 16
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: DecryptableObject, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.BoolBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 3973877188810506279
+      type: {class: FloatBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3973877188810506280
+        routing: 0
+        isPredicted: 0
+        defaultInterpolationPath: 
+        guid: abd2abbf-8917-4b21-82e9-7ba6dcb81f98
+        archetypeData:
+          type: 4
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 4
+            bits: 32
+            minRange: 0
+            maxRange: 0
+            precision: 0.001
+            floatCompression: 0
+          sharedBinding: {fileID: 0}
+        unityComponent: {fileID: 7096030946575695623}
+        coherenceSync: {fileID: 0}
+        interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
+    - rid: 3973877188810506280
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: HackProgress
+        monoAssemblyType: System.Single, mscorlib
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: UpdateMaterial
+        memberType: 4
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: DecryptableObject, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.FloatBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 3973877188810506281
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 7096030946575695623}
 --- !u!33 &3547737615233420448
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -386,4 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trigger: {fileID: 1412878418042765149}
+  TimeToHack: 3
+  TimeToLose: 0.5
   IsCarriedBy: {fileID: 0}
+  HackProgress: 0

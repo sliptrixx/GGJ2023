@@ -43,9 +43,6 @@ public class PlayerGrab : MonoBehaviour
 		{
 			grabProgress += Time.deltaTime / TimeToGrab;
 			grabProgress = Mathf.Clamp01(grabProgress);
-
-			
-
 			UIManager.Instance.UpdateHackProgress(grabProgress, decryptable?.transform);
 		}
 		else if(!isGrabbing && grabProgress > 0)

@@ -6,12 +6,18 @@ using UnityEngine;
 public class DecryptableObject : MonoBehaviour
 {
 	[SerializeField] DecryptableTrigger Trigger;
+	[SerializeField] float TimeToHack = 3;
+	[SerializeField] float TimeToLose = 0.5f;
 
 	[Header("Sync Variables")]
 	public CoherenceSync IsCarriedBy = null;
 
+	[OnValueSynced(nameof(UpdateMaterial))]
+	public float HackProgress = 0;
+
 	CoherenceSync sync;
 	Rigidbody rb;
+	MeshRenderer rend;
 
 	public System.Action<CoherenceSync> OnEntityStartCarryObject;
 
@@ -19,6 +25,33 @@ public class DecryptableObject : MonoBehaviour
 	{
 		sync = GetComponent<CoherenceSync>();
 		rb = GetComponent<Rigidbody>();
+		rend = GetComponent<MeshRenderer>();
+	}
+
+	void Update()
+	{
+		if(IsCarriedBy && HackProgress < 1)
+		{
+			float prev = HackProgress;
+			HackProgress += Time.deltaTime / TimeToHack;
+			HackProgress = Mathf.Clamp01(HackProgress);
+			UpdateMaterial(prev, HackProgress);
+		}
+		else if(!IsCarriedBy && HackProgress > 0)
+		{
+			float prev = HackProgress;
+			HackProgress -= Time.deltaTime / TimeToLose;
+			HackProgress = Mathf.Clamp01(HackProgress);
+			UpdateMaterial(prev, HackProgress);
+		}
+
+		if(HackProgress >= 1)
+		{
+			// SUPER COUPLED BUT IT'S 4:27 AM AND I DONT GIVE A DAMN
+			IsCarriedBy.GetComponent<PlayerAttack>().enabled = true;
+			IsCarriedBy.GetComponent<PlayerName>().CurrentScore++;
+			Destroy(gameObject);
+		}
 	}
 
 	public bool RequestPickup(GameObject requester)
@@ -41,6 +74,7 @@ public class DecryptableObject : MonoBehaviour
 			// parent the decryptable to the requester
 			transform.SetParent(requester.transform);
 			transform.localPosition = Vector3.up * 2;
+			transform.rotation = Quaternion.identity;
 
 			// inform others who maybe trying to still grab it
 			OnEntityStartCarryObject?.Invoke(IsCarriedBy);
@@ -72,5 +106,11 @@ public class DecryptableObject : MonoBehaviour
 		}
 
 		return false;
+	}
+
+	public void UpdateMaterial(float oldProgress, float newProgress)
+	{
+		if(!rend) { return; }
+		rend.material.SetFloat("_FillAmount", newProgress);
 	}
 }

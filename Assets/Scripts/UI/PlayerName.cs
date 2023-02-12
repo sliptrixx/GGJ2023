@@ -8,6 +8,8 @@ public class PlayerName : MonoBehaviour
 	[Tooltip("The text object where the name goes")]
 	[SerializeField] TMP_Text Nameplate;
 
+	public string playerName = "";
+
 	private int currentScore = 0;
 	
 	public int CurrentScore 
@@ -16,7 +18,8 @@ public class PlayerName : MonoBehaviour
 		set
 		{
 			currentScore = value;
-			SetName($"{ConnectionManager.Instance.PlayerName} - {currentScore}");
+			if(playerName == "") { playerName = Nameplate.text; }
+			Nameplate.text = $"{playerName} - {currentScore}";
 		}
 	}
 

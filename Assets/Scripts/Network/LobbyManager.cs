@@ -61,6 +61,12 @@ public class LobbyManager : Singleton<LobbyManager>
 			isGameReadyToStart = true;
 			OnGameReadyToStartUpdate(false, isGameReadyToStart);
 		}
+
+		// first player to join the room reset's the lobby
+		else if(MonoBridge.ClientConnections.ClientConnectionCount == 1)
+		{
+			ResetLobby();
+		}
 	}
 
 	void ClientConnectionsDestroyed(CoherenceClientConnection connection)
@@ -130,6 +136,38 @@ public class LobbyManager : Singleton<LobbyManager>
 			}
 
 			MonoBridge = monobridge;
+		}
+	}
+
+	public void ResetLobby()
+	{
+		// adjust if the game is ready to start
+		GetMonobridge();
+		bool prev_b = isGameReadyToStart;
+		isGameReadyToStart = MonoBridge.ClientConnections.ClientConnectionCount >= numberOfPlayersToStartGame;
+		OnGameReadyToStartUpdate(prev_b, isGameReadyToStart);
+
+		// adjust other values as well
+		prev_b = hasGameStarted;
+		hasGameStarted = false;
+		OnGameStartedUpdate(prev_b, hasGameStarted);
+
+		float prev = waitTimer;
+		waitTimer = isGameReadyToStart ? 15 : 0;
+		OnWaitTimerChanged(prev, waitTimer);
+
+		// destroy current objectives
+		if(CurrentObjectiveSync)
+		{
+			Destroy(CurrentObjectiveSync);
+			CurrentObjectiveSync = null;
+		}
+
+		// reset player scores
+		var players = FindObjectsOfType<PlayerName>();
+		foreach(var player in players)
+		{
+			player.CurrentScore = 0;
 		}
 	}
 

@@ -1,4 +1,5 @@
 using Coherence.Toolkit;
+using Hibzz.ActionList;
 using Hibzz.Singletons;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,6 +29,9 @@ public class LobbyManager : Singleton<LobbyManager>
 
 	[OnValueSynced(nameof(OnGameTimerChanged))]
 	public float gameTimer = 0;
+
+	[OnValueSynced(nameof(OnWinnerChanged))]
+	public string winner = "";
 
 	public CoherenceSync CurrentObjectiveSync;
 	public GameObject CurrentObjective { get; protected set; }
@@ -156,9 +160,16 @@ public class LobbyManager : Singleton<LobbyManager>
 				}
 			}
 
-			Debug.Log($"{winner} WON!");
+			// THIS WHOLE THING CAN BE SUPER OPTIMIZED BUT I GOT NO TIME
+			OnWinnerChanged(null, winner);
 
-			ResetLobby();
+			hasGameStarted = false;
+			var wait = new WaitAction(5.0f);
+			var restart = new LambdaAction(() => ResetLobby());
+			var sequence = new SequenceAction();
+			sequence.AddAction(wait);
+			sequence.AddAction(restart);
+			sequence.MarkReady();
 		}
 	}
 
@@ -198,6 +209,9 @@ public class LobbyManager : Singleton<LobbyManager>
 		gameTimer = 0;
 		OnWaitTimerChanged(prev, gameTimer);
 
+		winner = "";
+		OnWinnerChanged(null, winner);
+
 		// destroy current objectives
 		if(CurrentObjectiveSync)
 		{
@@ -236,5 +250,10 @@ public class LobbyManager : Singleton<LobbyManager>
 	public void OnGameTimerChanged(float old, float curr)
 	{
 		UIManager.Instance.UpdateGameTimer(curr);
+	}
+
+	public void OnWinnerChanged(string old, string curr)
+	{
+		UIManager.Instance.UpdateWinner(curr);
 	}
 }

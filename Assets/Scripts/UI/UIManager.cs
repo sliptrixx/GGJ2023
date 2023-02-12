@@ -41,6 +41,8 @@ public class UIManager : Singleton<UIManager>
 
 	[SerializeField] TMP_Text GameTimerText;
 
+	[SerializeField] TMP_Text WinnerText;
+
 	Camera cam;
 
 	void Start()
@@ -185,5 +187,16 @@ public class UIManager : Singleton<UIManager>
 
 		TimeSpan t = TimeSpan.FromSeconds(time_int);
 		GameTimerText.text = t.ToString(@"mm\:ss");
+	}
+
+	public void UpdateWinner(string winner)
+	{
+		if(string.IsNullOrWhiteSpace(winner)) 
+		{ 
+			WinnerText.text = ""; 
+			return; 
+		}
+
+		WinnerText.text = $"{winner} Won!\nThanks for playing :)";
 	}
 }

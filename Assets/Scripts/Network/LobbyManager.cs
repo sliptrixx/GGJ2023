@@ -11,7 +11,8 @@ public class LobbyManager : Singleton<LobbyManager>
 	[SerializeField] float waitTime = 15.0f;
 
 	[Header("Decryptable Objective Properties")]
-	[SerializeField] GameObject objectToSpawn;
+	[SerializeField] GameObject DecryptablePrefab;
+	[SerializeField] List<Transform> DecryptableSpawnPoints;
 
 	public CoherenceMonoBridge MonoBridge { get; protected set; }
 
@@ -24,12 +25,20 @@ public class LobbyManager : Singleton<LobbyManager>
 	[OnValueSynced(nameof(OnWaitTimerChanged))]
 	public float waitTimer = 0;
 
+	public CoherenceSync CurrentObjectiveSync;
+	public GameObject CurrentObjective { get; protected set; }
+
 	public void OnStateAuthority()
 	{
 		GetMonobridge();
 
 		MonoBridge.ClientConnections.OnCreated += ClientConnectionCreated;
 		MonoBridge.ClientConnections.OnDestroyed += ClientConnectionsDestroyed;
+
+		if(CurrentObjectiveSync)
+		{
+			CurrentObjective = CurrentObjectiveSync.gameObject;
+		}
 	}
 
 	public void OnStateRemote()
@@ -67,7 +76,6 @@ public class LobbyManager : Singleton<LobbyManager>
 
 	void Update()
 	{
-
 		if(isGameReadyToStart) 
 		{ 
 			WaitUpdate();
@@ -99,6 +107,15 @@ public class LobbyManager : Singleton<LobbyManager>
 
 	void GameUpdate() 
 	{
+		if (!CurrentObjective)
+		{
+			// pick a random spawn point
+			var spawnPoint = DecryptableSpawnPoints[Random.Range(0, DecryptableSpawnPoints.Count)];
+
+			// spawn a new objective for the player
+			CurrentObjective = Instantiate(DecryptablePrefab, spawnPoint.position, Quaternion.identity);
+			CurrentObjectiveSync = CurrentObjective.GetComponent<CoherenceSync>();
+		}
 	}
 
 	void GetMonobridge()

@@ -367,7 +367,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfPlayersToStartGame: 2
   waitTime: 15
-  objectToSpawn: {fileID: 3547737615233420511, guid: 67a7e1f876126984aaca8e1ee18ec7e6, type: 3}
+  DecryptablePrefab: {fileID: 3547737615233420511, guid: 67a7e1f876126984aaca8e1ee18ec7e6, type: 3}
+  DecryptableSpawnPoints: []
   isGameReadyToStart: 0
   hasGameStarted: 0
   waitTimer: 0
+  CurrentObjectiveSync: {fileID: 0}
